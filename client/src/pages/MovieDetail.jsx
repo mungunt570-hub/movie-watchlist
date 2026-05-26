@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMovies } from '../context/MovieContext';
-import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import StarRating from '../components/StarRating';
 import api from '../api';
@@ -44,15 +43,6 @@ export default function MovieDetail() {
     } catch {}
   };
 
-  const handleDelete = async () => {
-  if (!window.confirm('Delete this movie permanently?')) return;
-  try {
-    await api.delete(`/movies/${id}`);
-    navigate('/movies');
-  } catch (err) {
-    alert('Failed to delete movie');
-  }
-};
 
   const handleWatchlist = async (status) => {
     setSubmitting(true);
@@ -155,20 +145,6 @@ export default function MovieDetail() {
         </div>
       </div>
 
-      {/* Admin buttons */}
-{user?.role === 'admin' && (
-  <div className="flex gap-2 mt-4">
-    <Link to={`/movies/${movie._id}/edit`} className="btn-secondary text-sm px-4 py-2">
-      ✏️ Edit Movie
-    </Link>
-    <button
-      onClick={handleDelete}
-      className="font-body text-sm px-4 py-2 rounded bg-red-900 hover:bg-red-700 text-white transition-colors"
-    >
-      🗑 Delete Movie
-    </button>
-  </div>
-)}
 
       {/* Review form */}
       {user && (
