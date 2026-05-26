@@ -15,7 +15,8 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: [
-    'http://localhost:3000',
+   'http://localhost:3000',
+    'https://movie-watchlist-bay.vercel.app',
     'https://movie-watchlist-9zfigoqyi-mt-s-projects10.vercel.app',
   ],
   credentials: true
