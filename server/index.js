@@ -13,8 +13,13 @@ const profileRoutes  = require('./routes/profile');
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
-app.use(express.json());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://movie-watchlist-9zfigoqyi-mt-s-projects10.vercel.app',
+  ],
+  credentials: true
+}));app.use(express.json());
 
 // Routes
 app.use('/api/auth',      authRoutes);
